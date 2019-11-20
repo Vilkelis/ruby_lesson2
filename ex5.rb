@@ -13,7 +13,10 @@ loop do
 end
 
 puts 'Ваша корзина:'
-puts basket
+basket.each do |key, value|
+  puts "#{key} цена: #{value[:price]} кол-во: #{value[:qty]} " \
+       "сумма: #{value[:price] * value[:qty]}"
+end
 
 total = basket.inject(0) { |sum, n| sum + n[1][:price] * n[1][:qty] }
 puts "Итоговая сумма= #{total}"
