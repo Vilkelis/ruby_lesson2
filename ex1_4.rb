@@ -21,19 +21,16 @@ end
 # Ex 2.
 puts 'от 10 до 100 с шагом 5'
 
-result_array = []
-(10..100).step(5).each { |val| result_array << val }
+result_array = (10..100).step(5).to_a
 
 puts result_array
 
 # Ex 3.
-result_array = [0]
-f = 1
+result_array = [0, 1]
 
-while f < 100
-  result_array << f
-  f = result_array[-2] + result_array[-1]
-end
+result_array << result_array[-2] + result_array[-1] until result_array[-1] > 100
+
+result_array.delete_at(-1)
 
 puts 'Числа Фибоначчи:'
 puts result_array
@@ -44,8 +41,8 @@ puts 'Гласные буквы'
 res = {}
 g = %w[a e i o u y]
 puts g
-('a'..'z').each_with_index do |val, index|
-  res[val] = index + 1 if g.include?(val)
+('a'..'z').each.with_index(1) do |val, index|
+  res[val] = index if g.include?(val)
 end
 
 puts res.to_s
